@@ -10,8 +10,8 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 }
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
-  final formkey=GlobalKey<FormState>();
-  final textController=TextEditingController();
+  final formkey = GlobalKey<FormState>();
+  final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,25 +20,38 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
       ),
       body: Form(
         key: formkey,
-        child: Column(
-          children: [
-            TextFormField(
-              style: TextStyle(color: Colors.white,fontSize: 20),
-              controller: textController,
-              decoration: InputDecoration(
-                counterStyle: TextStyle(color: Colors.white),
-                labelText: 'Enter place'
-              ),
-              
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: [
+                TextFormField(
+                  style: TextStyle(
+                      color: Theme.of(context).colorScheme.onBackground),
+                  controller: textController,
+                  decoration: InputDecoration(
+                      counterStyle: TextStyle(color: Colors.white),
+                      labelText: 'Enter place'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    if(textController.text.trim().isEmpty){
+                      return;
+                    }
+                    ref
+                        .read(placeHandlerProvider.notifier)
+                        .addPlace(place: textController.text);
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(Icons.add),
+                  label: Text('add'),
+                )
+              ],
             ),
-            SizedBox(height: 20,),
-            ElevatedButton.icon(onPressed: (){
-              ref.read(placeHandlerProvider.notifier).addPlace(place: textController.text);
-              Navigator.pop(context);
-
-            }, icon: Icon(Icons.add), label: Text('add'),
-            )
-          ],
+          ),
         ),
       ),
     );
