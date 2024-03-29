@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:udemy_flutter_section13/screen/place_screen.dart';
@@ -12,6 +13,7 @@ final colorScheme = ColorScheme.fromSeed(
 final theme = ThemeData().copyWith(
   useMaterial3: true,
   scaffoldBackgroundColor: colorScheme.background,
+
   colorScheme: colorScheme,
   textTheme: GoogleFonts.ubuntuCondensedTextTheme().copyWith(
     titleSmall: GoogleFonts.ubuntuCondensed(
@@ -28,7 +30,7 @@ final theme = ThemeData().copyWith(
 
 void main() {
   runApp(
-    const MyApp(),
+    ProviderScope(child: const MyApp()),
   );
 }
 
