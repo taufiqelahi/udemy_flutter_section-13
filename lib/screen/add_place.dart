@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:udemy_flutter_section13/component/image_input.dart';
 import 'package:udemy_flutter_section13/provider/add_place_provider.dart';
 
 class AddPlaceScreen extends ConsumerStatefulWidget {
@@ -29,11 +30,13 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                   style: TextStyle(
                       color: Theme.of(context).colorScheme.onBackground),
                   controller: textController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       counterStyle: TextStyle(color: Colors.white),
                       labelText: 'Enter place'),
                 ),
-                SizedBox(
+                const SizedBox(height: 20,),
+                const ImageInput(),
+                const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton.icon(
@@ -46,8 +49,8 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                         .addPlace(place: textController.text);
                     Navigator.pop(context);
                   },
-                  icon: Icon(Icons.add),
-                  label: Text('add'),
+                  icon: const Icon(Icons.add),
+                  label: const Text('add'),
                 )
               ],
             ),

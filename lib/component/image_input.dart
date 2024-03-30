@@ -13,13 +13,14 @@ class _ImageInputState extends State<ImageInput> {
   Widget build(BuildContext context) {
     return Container(
       height: 250,
+      width: double.infinity,
       decoration: BoxDecoration(
         border: Border.all(
           width: 1,
           color: Theme.of(context).colorScheme.primary.withOpacity(0.2)
         )
       ),
-      child: TextButton.icon(onPressed: (){}, icon: Icon(Icons.camera), label: Text('Take Picture')),
+      child: TextButton.icon(onPressed: (){}, icon: const Icon(Icons.camera), label: const Text('Take Picture')),
     );
   }
 }
