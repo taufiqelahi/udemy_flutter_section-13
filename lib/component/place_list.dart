@@ -8,17 +8,25 @@ class PlaceList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if(place.isEmpty){
-      return Center(child: Text('No intems Addded',style: Theme.of(context)
-          .textTheme
-          .titleLarge!
-          .copyWith(color: Theme.of(context).colorScheme.onBackground),));
+    if (place.isEmpty) {
+      return Center(
+          child: Text(
+        'No intems Addded',
+        style: Theme.of(context)
+            .textTheme
+            .titleLarge!
+            .copyWith(color: Theme.of(context).colorScheme.onBackground),
+      ));
     }
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>PlaceDetailsScreen(place: place[index])));
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        PlaceDetailsScreen(place: place[index])));
           },
           title: Text(
             place[index].title,
@@ -26,6 +34,9 @@ class PlaceList extends StatelessWidget {
                 .textTheme
                 .titleMedium!
                 .copyWith(color: Theme.of(context).colorScheme.onBackground),
+          ),
+          leading: CircleAvatar(
+            backgroundImage: FileImage(place[index].image),
           ),
         );
       },

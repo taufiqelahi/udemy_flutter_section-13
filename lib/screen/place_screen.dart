@@ -19,7 +19,7 @@ class PlaceScreen extends ConsumerWidget {
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (BuildContext context) {
-                    return AddPlaceScreen();
+                    return const AddPlaceScreen();
                   }));
                 },
                 icon: Icon(Icons.add))

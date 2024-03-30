@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:udemy_flutter_section13/component/image_input.dart';
@@ -11,6 +13,7 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 }
 
 class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
+  File? selectedImage;
   final formkey = GlobalKey<FormState>();
   final textController = TextEditingController();
   @override
@@ -35,18 +38,20 @@ class _AddPlaceScreenState extends ConsumerState<AddPlaceScreen> {
                       labelText: 'Enter place'),
                 ),
                 const SizedBox(height: 20,),
-                const ImageInput(),
+               ImageInput(image:(image){
+                 selectedImage=image;
+               },),
                 const SizedBox(
                   height: 20,
                 ),
                 ElevatedButton.icon(
                   onPressed: () {
-                    if(textController.text.trim().isEmpty){
+                    if(textController.text.trim().isEmpty || selectedImage==null){
                       return;
                     }
                     ref
                         .read(placeHandlerProvider.notifier)
-                        .addPlace(place: textController.text);
+                        .addPlace(place: textController.text, image: selectedImage!);
                     Navigator.pop(context);
                   },
                   icon: const Icon(Icons.add),
