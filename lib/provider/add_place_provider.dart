@@ -8,6 +8,7 @@ class PlaceNotifier extends StateNotifier<List<Place>>{
   PlaceNotifier():super([]);
   addPlace({required String place,required File image}){
     final newPlace=Place(title: place,image: image);
+    
     state=[...state,newPlace];
   }
 }
